@@ -54,7 +54,7 @@ public class TaskControllerIntegrationTest extends BaseIntegrationTest {
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .extract().as(ToDoItemValidationError.class);
 
-        assertEquals(result.getDetails().getMsg(), "Must be between 1 and 100 chars long");
+        assertEquals(result.getDetails().get(0).getMsg(), "Must be between 1 and 100 chars long");
     }
 
 }
