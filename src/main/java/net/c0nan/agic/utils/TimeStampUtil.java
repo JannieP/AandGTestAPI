@@ -7,9 +7,9 @@ import java.util.TimeZone;
 
 public class TimeStampUtil {
     public static String getTimeStamp() {
-        TimeZone tz = TimeZone.getTimeZone("AEST");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-        df.setTimeZone(tz);
-        return df.format(new Date());
+        TimeZone timeZone = TimeZone.getTimeZone("AEST");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        dateFormat.setTimeZone(timeZone);
+        return dateFormat.format(new Date());
     }
 }

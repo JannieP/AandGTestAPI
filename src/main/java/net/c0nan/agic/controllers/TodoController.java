@@ -6,9 +6,10 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import net.c0nan.agic.models.ToDoItem;
-import net.c0nan.agic.models.TodoBody;
 import net.c0nan.agic.models.error.notfound.ToDoItemNotFoundError;
 import net.c0nan.agic.models.error.validation.ToDoItemValidationError;
+import net.c0nan.agic.models.request.ToDoItemAddRequest;
+import net.c0nan.agic.models.request.ToDoItemUpdateRequest;
 import net.c0nan.agic.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/todo")
@@ -35,7 +38,7 @@ public class TodoController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             response = ToDoItem.class)
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ToDoItem postNew(@ApiParam(required = true) @RequestBody final TodoBody body) {
+    public ToDoItem postNew(@ApiParam(required = true) @RequestBody @Valid final ToDoItemAddRequest body) {
         return todoService.postNew(body);
     }
 
@@ -61,7 +64,7 @@ public class TodoController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             response = ToDoItem.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ToDoItem patchItem(@ApiParam(required = true, example = "42") @PathVariable final Integer id, @ApiParam(required = true) @RequestBody final TodoBody body) {
+    public ToDoItem patchItem(@ApiParam(required = true, example = "42") @PathVariable final Integer id, @ApiParam(required = true) @RequestBody final ToDoItemUpdateRequest body) {
         return todoService.update(id, body);
     }
 }

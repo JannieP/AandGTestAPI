@@ -3,7 +3,8 @@ package net.c0nan.agic.services;
 import net.c0nan.agic.exception.NotFoundException;
 import net.c0nan.agic.exception.ValidationException;
 import net.c0nan.agic.models.ToDoItem;
-import net.c0nan.agic.models.TodoBody;
+import net.c0nan.agic.models.request.ToDoItemAddRequest;
+import net.c0nan.agic.models.request.ToDoItemUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import static net.c0nan.agic.domain.MockDataBase.persist;
@@ -15,7 +16,7 @@ public class TodoService {
 
     private static final Integer MAX_LENGTH = 50;
 
-    public ToDoItem postNew(final TodoBody body) {
+    public ToDoItem postNew(final ToDoItemAddRequest body) {
         validateInput(body.getText());
         ToDoItem result;
         synchronized (this) {
@@ -32,7 +33,7 @@ public class TodoService {
         return item;
     }
 
-    public ToDoItem update(final Integer id, final TodoBody body) {
+    public ToDoItem update(final Integer id, final ToDoItemUpdateRequest body) {
         validateInput(body.getText());
         ToDoItem item = get(id);
 
@@ -45,7 +46,7 @@ public class TodoService {
         return read(id);
     }
 
-    private ToDoItem map(final TodoBody body) {
+    private ToDoItem map(final ToDoItemAddRequest body) {
         ToDoItem item = new ToDoItem();
         item.setCreatedAt(getTimeStamp());
         item.setText(body.getText());
