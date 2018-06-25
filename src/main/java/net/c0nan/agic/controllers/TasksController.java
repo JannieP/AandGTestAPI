@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 @Api(value = "tasks", tags = {"tasks"}, description = "General algorithmic tasks")
 public class TasksController {
 

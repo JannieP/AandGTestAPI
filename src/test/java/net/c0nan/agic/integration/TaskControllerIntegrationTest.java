@@ -28,7 +28,7 @@ public class TaskControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void testValidateBracketsViaREST() {
-        String url = "/task/validateBrackets";
+        String url = "/tasks/validateBrackets";
         BalanceTestResult result = given()
                 .queryParam("input", BASIC_WORKING)
                 .when()
@@ -45,7 +45,7 @@ public class TaskControllerIntegrationTest extends BaseIntegrationTest {
         String value = Strings.padStart("", 55, '{');
         value = Strings.padEnd(value, 110, '}');
 
-        String url = "/task/validateBrackets";
+        String url = "/tasks/validateBrackets";
         ToDoItemValidationError result = given()
                 .queryParam("input", value)
                 .when()

@@ -2,6 +2,7 @@ package net.c0nan.agic.controllers;
 
 import com.google.common.base.Strings;
 import net.c0nan.agic.BaseTest;
+import net.c0nan.agic.exception.ValidationException;
 import net.c0nan.agic.models.result.BalanceTestResult;
 import net.c0nan.agic.services.TaskService;
 import org.easymock.TestSubject;
@@ -27,8 +28,11 @@ public class TaskControllerTest extends BaseTest {
     public void testSizeValidation() {
         String value = Strings.padStart("", 55, '{');
         value = Strings.padEnd(value, 110, '}');
-        result = controller.validateBrackets(value);
-        assertTrue(result.isBalanced());
+        try {
+            controller.validateBrackets(value);
+        } catch (Exception ex) {
+            assertTrue(ex instanceof ValidationException);
+        }
     }
 
 }

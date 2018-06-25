@@ -3,6 +3,7 @@ package net.c0nan.agic.services;
 import com.google.common.base.Strings;
 import net.c0nan.agic.BaseTest;
 import net.c0nan.agic.controllers.TasksController;
+import net.c0nan.agic.exception.ValidationException;
 import net.c0nan.agic.models.result.BalanceTestResult;
 import org.easymock.TestSubject;
 import org.junit.Before;
@@ -63,8 +64,12 @@ public class TaskServiceTest extends BaseTest {
         value = Strings.padStart(value, 55, '{');
         value = Strings.padEnd(value, 110, '}');
         result = taskService.validateBrackets(value);
-        BalanceTestResult result = controller.validateBrackets(value);
-        assertTrue(result.isBalanced());
+        try {
+            controller.validateBrackets(value);
+        } catch (Exception ex) {
+            assertTrue(ex instanceof ValidationException);
+        }
+
     }
 
 }
