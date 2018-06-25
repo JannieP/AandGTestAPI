@@ -50,7 +50,7 @@ public class TodoController {
             value = "Retrieve a specific item by id",
             response = ToDoItem.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ToDoItem getItem(@ApiParam(required = true, example = "42") @PathVariable final Integer id) {
+    public ToDoItem getItem(@ApiParam(required = true, example = "42") @PathVariable final Long id) {
         return todoService.get(id);
     }
 
@@ -64,7 +64,7 @@ public class TodoController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             response = ToDoItem.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ToDoItem patchItem(@ApiParam(required = true, example = "42") @PathVariable final Integer id, @ApiParam(required = true) @RequestBody final ToDoItemUpdateRequest body) {
+    public ToDoItem patchItem(@ApiParam(required = true, example = "42") @PathVariable final Long id, @ApiParam(required = true) @RequestBody final ToDoItemUpdateRequest body) {
         return todoService.update(id, body);
     }
 }

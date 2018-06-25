@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ToDoItem {
     @ApiModelProperty(example = "42")
-    private Integer id;
+    private Long id;
     @ApiModelProperty(example = "\"Uulwi ifis halahs gag erh'ongg w'ssh.\"", position = 1)
     private String text;
     @ApiModelProperty(example = "false", position = 2, name = "isCompleted")

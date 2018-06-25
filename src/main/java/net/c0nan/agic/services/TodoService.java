@@ -25,7 +25,7 @@ public class TodoService {
         return result;
     }
 
-    public ToDoItem get(final Integer id) {
+    public ToDoItem get(final Long id) {
         ToDoItem item = read(id);
         if (item == null) {
             throw new NotFoundException(String.format("Item with id %s not found", id.toString()));
@@ -33,7 +33,7 @@ public class TodoService {
         return item;
     }
 
-    public ToDoItem update(final Integer id, final ToDoItemUpdateRequest body) {
+    public ToDoItem update(final Long id, final ToDoItemUpdateRequest body) {
 
         ToDoItem item = get(id);
 

@@ -7,17 +7,17 @@ import java.util.Map;
 
 public class MockDataBase {
 
-    private static Map<Integer, ToDoItem> thisData = new HashMap<>();
+    private static Map<Long, ToDoItem> thisData = new HashMap<>();
 
     public static ToDoItem persist(final ToDoItem item) {
         if (item.getId() == null) {
-            item.setId(thisData.size() + 1);
+            item.setId(thisData.size() + 1L);
             thisData.put(item.getId(), item);
         }
         return item;
     }
 
-    public static ToDoItem read(final Integer id) {
+    public static ToDoItem read(final Long id) {
         return thisData.get(id);
     }
 
