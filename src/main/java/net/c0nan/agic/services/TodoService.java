@@ -34,10 +34,11 @@ public class TodoService {
     }
 
     public ToDoItem update(final Integer id, final ToDoItemUpdateRequest body) {
-        validateInput(body.getText());
+
         ToDoItem item = get(id);
 
         if (body.getText() != null) {
+            validateInput(body.getText());
             item.setText(body.getText());
         }
         if (body.getCompleted() != null) {

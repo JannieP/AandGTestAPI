@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import com.jayway.restassured.RestAssured;
 import net.c0nan.agic.BaseIntegrationTest;
 import net.c0nan.agic.models.error.validation.ToDoItemValidationError;
-import net.c0nan.agic.models.error.validation.ValidationErrorDetail;
 import net.c0nan.agic.models.result.BalanceTestResult;
 import org.junit.Before;
 import org.junit.Test;
