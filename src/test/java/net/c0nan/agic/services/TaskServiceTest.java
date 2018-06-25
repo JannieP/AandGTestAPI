@@ -28,6 +28,9 @@ public class TaskServiceTest extends BaseTest {
     @Test
     public void testBasicValidateBrackets() {
 
+        result = taskService.validateBrackets("");
+        assertTrue(result.isBalanced());
+
         result = taskService.validateBrackets(BASIC_WORKING);
         assertTrue(result.isBalanced());
 
@@ -52,6 +55,9 @@ public class TaskServiceTest extends BaseTest {
 
         result = taskService.validateBrackets(COMPLEX_NOT_WORKING2);
         assertFalse(result.isBalanced());
+
+        result = taskService.validateBrackets(COMPLEX_WORKING2);
+        assertTrue(result.isBalanced());
     }
 
     @Test

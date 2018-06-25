@@ -31,6 +31,9 @@
         <checkstyle.config.location>${project.basedir}/src/main/resources/checks.xml</checkstyle.config.location>
         <formatter.version>0.5.2</formatter.version>
         <formatter.config.location>${project.basedir}/src/main/resources/format.xml</formatter.config.location>
+        <jacoco.version>0.8.1</jacoco.version>
+        <jacoco.config.location>${project.basedir}/target/coverage-reports/jacoco-unit.exec</jacoco.config.location>
+        <jacoco.data.location>${project.basedir}/target/coverage-reports</jacoco.data.location>
     </properties>
 
     <dependencies>
@@ -171,6 +174,43 @@
                             <failOnViolation>true</failOnViolation>
                             <includeTestResources>true</includeTestResources>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <destFile>${jacoco.config.location}</destFile>
+                    <dataFile>${jacoco.config.location}</dataFile>
+                    <outputDirectory>${jacoco.data.location}</outputDirectory>
+                    <excludes>
+                        <exclude>**/*Applicatio*</exclude>
+                        <exclude>**/*Config*</exclude>
+                        <exclude>**/domain/**</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
